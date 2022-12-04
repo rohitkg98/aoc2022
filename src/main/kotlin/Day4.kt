@@ -15,6 +15,14 @@ data class Range(val start: Int, val end: Int) {
             else -> false
         }
     }
+
+    fun overlaps(range: Range): Boolean {
+        return when {
+            range.start in start..end -> true
+            range.end in start..end -> true
+            else -> false
+        }
+    }
 }
 
 object Day4 : Day() {
@@ -25,5 +33,9 @@ object Day4 : Day() {
         val overlaps = elfRanges.map { it.first.contains(it.second) or it.second.contains(it.first) }.count { it }
 
         println("Total overlapping ranges: $overlaps")
+
+        val semiOverlaps = elfRanges.map { it.first.overlaps(it.second) or it.second.overlaps(it.first) }.count { it }
+
+        println("Total overlapping at all ranges: $semiOverlaps")
     }
 }
