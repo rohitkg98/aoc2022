@@ -3,3 +3,5 @@ fun <T> List<T>.toPair(): Pair<T, T> {
     val (a, b) = this
     return Pair(a, b)
 }
+
+fun <T> List<T>.headTail() = Pair(first(), drop(1))
